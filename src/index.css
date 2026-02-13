@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+@theme {
+  --font-press-start: "Press Start 2P", cursive;
+  --font-vt323: "VT323", monospace;
+
+  --color-retro-pink: #FF94C2;
+  --color-retro-purple: #B692F6;
+  --color-retro-cyan: #94E0FF;
+  --color-retro-cream: #FFF9E6;
+  --color-retro-love: #FF3366;
+  --color-retro-dark: #2D2D2D;
+
+  --shadow-pixel: 4px 4px 0px 0px #000000;
+  --shadow-pixel-sm: 2px 2px 0px 0px #000000;
+  --shadow-pixel-lg: 6px 6px 0px 0px #000000;
+
+  --image-pixel-heart: url('/pixel-heart.png');
+
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-up: slide-up 0.5s ease-out;
+  --animate-bounce-in: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animate-spin-slow: spin-slow 3s linear infinite;
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-up {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounce-in {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+@layer base {
+  body {
+    @apply bg-retro-cream text-retro-dark font-vt323 antialiased;
+    image-rendering: pixelated;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-press-start;
+  }
+}
+
+@layer components {
+  .pixelated {
+    image-rendering: pixelated;
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-retro-cream border-l-4 border-black;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-retro-purple border-4 border-black;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-retro-pink;
+  }
+}
