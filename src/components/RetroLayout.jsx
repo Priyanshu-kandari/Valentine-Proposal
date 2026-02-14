@@ -1,4 +1,6 @@
 import React from 'react';
+import DancingTeddy from './DancingTeddy';
+import FloatingIcons from './FloatingIcons';
 
 const RetroLayout = ({ children }) => {
     return (
@@ -16,6 +18,11 @@ const RetroLayout = ({ children }) => {
             <div className="absolute top-10 left-10 animate-pulse text-retro-love text-4xl">♥</div>
             <div className="absolute bottom-20 right-20 animate-bounce text-retro-purple text-4xl">★</div>
             <div className="absolute top-1/2 left-5 animate-ping text-retro-cyan text-2xl">✦</div>
+            <FloatingIcons />
+
+            {/* Dancing Teddys */}
+            <DancingTeddy position="bottom-left" delay={0} />
+            <DancingTeddy position="bottom-right" delay={1} />
 
             <div className="relative z-10 container mx-auto px-4 py-8 flex flex-col items-center justify-center min-h-screen">
                 {children}

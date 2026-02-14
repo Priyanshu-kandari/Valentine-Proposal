@@ -29,6 +29,7 @@ let db;
       yourName TEXT,
       partnerName TEXT,
       image TEXT,
+      yourImage TEXT,
       createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
     )
   `);
@@ -40,7 +41,7 @@ let db;
 
 // API Routes
 app.post('/api/proposals', async (req, res) => {
-    const { yourName, partnerName, image } = req.body;
+    const { yourName, partnerName, image, yourImage } = req.body;
 
     if (!yourName || !partnerName) {
         return res.status(400).json({ error: 'Names are required' });
@@ -48,8 +49,8 @@ app.post('/api/proposals', async (req, res) => {
 
     try {
         const result = await db.run(
-            'INSERT INTO proposals (yourName, partnerName, image) VALUES (?, ?, ?)',
-            [yourName, partnerName, image]
+            'INSERT INTO proposals (yourName, partnerName, image, yourImage) VALUES (?, ?, ?, ?)',
+            [yourName, partnerName, image, yourImage]
         );
         res.json({ id: result.lastID });
     } catch (error) {

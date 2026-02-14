@@ -36,7 +36,8 @@ const ProposalPage = () => {
                     setProposalData({
                         yourName: data.yourName,
                         partnerName: data.partnerName,
-                        image: data.image
+                        image: data.image,
+                        yourImage: data.yourImage
                     });
                 })
                 .catch(err => console.error(err))
@@ -202,12 +203,50 @@ const ProposalPage = () => {
                         <h1 className="text-4xl md:text-6xl font-press-start text-retro-love mb-8 drop-shadow-pixel text-shadow">
                             LEVEL COMPLETE!
                         </h1>
-                        <PixelCard className="max-w-md mx-auto">
+                        <PixelCard className="max-w-xl mx-auto">
                             <div className="text-6xl mb-4">💍💖</div>
-                            <p className="text-2xl md:text-3xl mb-4">
+                            <p className="text-2xl md:text-3xl mb-8">
                                 {partnerName} SAID YES!
                             </p>
-                            <p className="text-xl text-retro-purple">
+
+                            {/* Couple Frame */}
+                            {(image || proposalData.yourImage) && (
+                                <div className="flex justify-center items-center gap-4 mb-6">
+                                    {proposalData.yourImage && (
+                                        <div className="relative transform -rotate-6 z-10">
+                                            <div className="w-32 h-32 md:w-40 md:h-40 border-4 border-black p-1 bg-white shadow-pixel">
+                                                <img
+                                                    src={proposalData.yourImage}
+                                                    alt={yourName}
+                                                    className="w-full h-full object-cover pixelated"
+                                                />
+                                            </div>
+                                            <div className="absolute -bottom-6 left-0 right-0 text-center bg-retro-purple text-white border-2 border-black font-vt323 text-lg py-1">
+                                                {yourName}
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    <div className="text-4xl animate-pulse text-retro-love mx-[-20px] z-20">❤️</div>
+
+                                    {image && (
+                                        <div className="relative transform rotate-6 z-10">
+                                            <div className="w-32 h-32 md:w-40 md:h-40 border-4 border-black p-1 bg-white shadow-pixel">
+                                                <img
+                                                    src={image}
+                                                    alt={partnerName}
+                                                    className="w-full h-full object-cover pixelated"
+                                                />
+                                            </div>
+                                            <div className="absolute -bottom-6 left-0 right-0 text-center bg-retro-pink text-white border-2 border-black font-vt323 text-lg py-1">
+                                                {partnerName}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                            )}
+
+                            <p className="text-xl text-retro-purple mt-8">
                                 New Quest Unlocked: Valentine's Date 🥂
                             </p>
                         </PixelCard>

@@ -11,7 +11,8 @@ const CreatePage = () => {
     const [formData, setFormData] = useState({
         yourName: '',
         partnerName: '',
-        image: ''
+        image: '',
+        yourImage: ''
     });
     const [generatedLink, setGeneratedLink] = useState('');
     const [copied, setCopied] = useState(false);
@@ -53,7 +54,7 @@ const CreatePage = () => {
         });
     };
 
-    const handleImageUpload = async (e) => {
+    const handleImageUpload = async (e, field) => {
         const file = e.target.files[0];
         if (file) {
             if (file.size > 5 * 1024 * 1024) {
@@ -61,7 +62,7 @@ const CreatePage = () => {
                 return;
             }
             const dataUrl = await resizeImage(file);
-            setFormData({ ...formData, image: dataUrl });
+            setFormData({ ...formData, [field]: dataUrl });
         }
     };
 
@@ -128,7 +129,7 @@ const CreatePage = () => {
         <RetroLayout>
             <PixelCard className="w-full max-w-lg animate-slide-up">
                 <h2 className="text-2xl text-center mb-6 text-retro-love flex items-center justify-center gap-2">
-                    <Heart className="fill-current" /> CONFIGURATION
+                    <Heart className="fill-current" /> SETUP LEVEL 1
                 </h2>
 
                 {!generatedLink ? (
@@ -149,29 +150,45 @@ const CreatePage = () => {
                             onChange={(e) => setFormData({ ...formData, partnerName: e.target.value })}
                         />
 
-                        <div className="flex flex-col gap-2">
-                            <label className="font-vt323 text-xl font-bold">Upload Partner's Photo</label>
-                            <PixelInput
-                                id="imageUpload"
-                                type="file"
-                                accept="image/*"
-                                onChange={handleImageUpload}
-                            />
-                            <p className="text-xs text-gray-500 font-vt323">*Images are saved locally</p>
-                        </div>
-
-                        {formData.image && (
-                            <div className="flex justify-center my-4">
-                                <div className="w-32 h-32 border-4 border-black p-1 bg-white shadow-pixel">
-                                    <img
-                                        src={formData.image}
-                                        alt="Preview"
-                                        className="w-full h-full object-cover pixelated"
-                                        onError={(e) => e.target.style.display = 'none'}
-                                    />
-                                </div>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div className="flex flex-col gap-2">
+                                <label className="font-vt323 text-xl font-bold">Your Photo</label>
+                                <PixelInput
+                                    id="yourImageUpload"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageUpload(e, 'yourImage')}
+                                />
+                                {formData.yourImage && (
+                                    <div className="w-full h-32 border-4 border-black p-1 bg-white shadow-pixel mt-2">
+                                        <img
+                                            src={formData.yourImage}
+                                            alt="Preview You"
+                                            className="w-full h-full object-cover pixelated"
+                                        />
+                                    </div>
+                                )}
                             </div>
-                        )}
+
+                            <div className="flex flex-col gap-2">
+                                <label className="font-vt323 text-xl font-bold">Partner's Photo</label>
+                                <PixelInput
+                                    id="imageUpload"
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => handleImageUpload(e, 'image')}
+                                />
+                                {formData.image && (
+                                    <div className="w-full h-32 border-4 border-black p-1 bg-white shadow-pixel mt-2">
+                                        <img
+                                            src={formData.image}
+                                            alt="Preview Partner"
+                                            className="w-full h-full object-cover pixelated"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
 
                         <div className="pt-4">
                             <PixelButton

@@ -3,15 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import RetroLayout from '../components/RetroLayout';
 import PixelButton from '../components/PixelButton';
 import PixelCard from '../components/PixelCard';
+import DancingTeddy from '../components/DancingTeddy';
 
 const LandingPage = () => {
     const navigate = useNavigate();
 
     return (
         <RetroLayout>
-            <div className="text-center space-y-8 animate-fade-in">
-                <h1 className="text-4xl md:text-6xl font-press-start text-retro-love mb-2 drop-shadow-pixel">
-                    PIXEL<br />VALENTINE 💖
+            {/* Big Dancing Teddy - Fixed to side */}
+            <DancingTeddy position="right-center-fixed" size="xl" delay={0.5} />
+
+            <div className="text-center space-y-12 animate-fade-in relative z-10">
+                <h1 className="text-4xl md:text-6xl font-press-start text-retro-love mb-8 drop-shadow-pixel">
+                    MY LOVE<br />QUEST 💖
                 </h1>
 
                 <PixelCard className="max-w-md mx-auto transform hover:-translate-y-1 transition-transform duration-300">

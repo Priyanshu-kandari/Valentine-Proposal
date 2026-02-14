@@ -16,6 +16,14 @@ function App() {
         <Route path="/proposal" element={<ProposalPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <a
+        href="https://www.instagram.com/preyanshuuu?igsh=NWFqaHBzZGd2NGJv"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="dev-tag"
+      >
+        Developed by Priyanshu Kandari
+      </a>
     </Router>
   );
 }
